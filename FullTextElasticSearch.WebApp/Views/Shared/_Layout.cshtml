@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Applicazione ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <div class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container">
+            <h2 style="color:#fff">Indice Elastic Search Full Text Banca Dati</h2>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Full Text Elastic Search</p>
+        </footer>
+    </div>
+
+
+    <div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content loader">
+                <div class="modal-body text-center">
+                    <img style="max-height: 400px" src="@Url.Content("~/Content/images/preloader.gif")" alt="loading data" />
+                    <h4 style="background-color: #33383f; color: #fff; line-height: 30px" class="box-shadow text-center">loding data...</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="scrollTop" title="Go to top">Top</button>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

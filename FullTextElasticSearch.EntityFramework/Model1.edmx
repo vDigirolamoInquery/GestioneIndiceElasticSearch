@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TAMONE_DOCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="spFullTextApriDocumento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idDocumento" Type="nvarchar" Mode="In" />
+          <Parameter Name="esito" Type="bit" Mode="InOut" />
+          <Parameter Name="descrizioneEsito" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="spFullTextArticoliDocumento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idDocumento" Type="nvarchar" Mode="In" />
+          <Parameter Name="esito" Type="bit" Mode="InOut" />
+          <Parameter Name="descrizioneEsito" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="spFullTextIndicizzaDocumenti" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="indicePagina" Type="int" Mode="In" />
+          <Parameter Name="grandezzaPagina" Type="int" Mode="In" />
+          <Parameter Name="destinazione" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spFullTextIndicizzaDocumentiTotale" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="destinazione" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spFullTextIndicizzaScadenze" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="indicePagina" Type="int" Mode="In" />
+          <Parameter Name="grandezzaPagina" Type="int" Mode="In" />
+          <Parameter Name="destinazione" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spFullTextIndicizzaScadenzeTotale" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="destinazione" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spFullTextTagDocumento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idDocumento" Type="nvarchar" Mode="In" />
+          <Parameter Name="esito" Type="bit" Mode="InOut" />
+          <Parameter Name="descrizioneEsito" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="TAMONE_DOCModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TAMONE_DOCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TAMONE_DOCEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="spFullTextApriDocumento" ReturnType="Collection(TAMONE_DOCModel.spFullTextApriDocumento_Result)">
+            <Parameter Name="idDocumento" Mode="In" Type="String" />
+            <Parameter Name="esito" Mode="InOut" Type="Boolean" />
+            <Parameter Name="descrizioneEsito" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spFullTextArticoliDocumento" ReturnType="Collection(TAMONE_DOCModel.spFullTextArticoliDocumento_Result)">
+            <Parameter Name="idDocumento" Mode="In" Type="String" />
+            <Parameter Name="esito" Mode="InOut" Type="Boolean" />
+            <Parameter Name="descrizioneEsito" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spFullTextTagDocumento" ReturnType="Collection(String)">
+            <Parameter Name="idDocumento" Mode="In" Type="String" />
+            <Parameter Name="esito" Mode="InOut" Type="Boolean" />
+            <Parameter Name="descrizioneEsito" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spFullTextIndicizzaDocumenti" ReturnType="Collection(TAMONE_DOCModel.spFullTextIndicizzaDocumenti_Result)">
+            <Parameter Name="indicePagina" Mode="In" Type="Int32" />
+            <Parameter Name="grandezzaPagina" Mode="In" Type="Int32" />
+            <Parameter Name="destinazione" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spFullTextIndicizzaDocumentiTotale" ReturnType="Collection(Int32)">
+            <Parameter Name="destinazione" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spFullTextIndicizzaScadenze" ReturnType="Collection(TAMONE_DOCModel.spFullTextIndicizzaScadenze_Result)">
+            <Parameter Name="indicePagina" Mode="In" Type="Int32" />
+            <Parameter Name="grandezzaPagina" Mode="In" Type="Int32" />
+            <Parameter Name="destinazione" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spFullTextIndicizzaScadenzeTotale" ReturnType="Collection(Int32)">
+            <Parameter Name="destinazione" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="spFullTextApriDocumento_Result">
+          <Property Type="String" Name="IdDocumento" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Descrizione" Nullable="true" MaxLength="106" />
+          <Property Type="DateTime" Name="Dal" Nullable="true" />
+          <Property Type="DateTime" Name="Al" Nullable="true" />
+          <Property Type="Int32" Name="CodiceClasse" Nullable="true" />
+          <Property Type="String" Name="DescrizioneClasse" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CodiceTabella" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="CodiceTipo" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="DescrizioneTipo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CodiceSottotipo" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="DescrizioneSottotipo" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Destinazione" Nullable="true" />
+          <Property Type="String" Name="Testo" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Titolo" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Oggetto" Nullable="true" />
+          <Property Type="DateTime" Name="DataUltimaCompilazione" Nullable="true" />
+          <Property Type="Decimal" Name="Peso" Nullable="true" Precision="7" Scale="2" />
+          <Property Type="DateTime" Name="DataScadenza" Nullable="false" />
+          <Property Type="String" Name="Comando" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spFullTextArticoliDocumento_Result">
+          <Property Type="String" Name="Nome" Nullable="true" />
+          <Property Type="String" Name="Segnalibro" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Tag" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="spFullTextIndicizzaDocumenti_Result">
+          <Property Type="String" Name="IdDocumento" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Titolo" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Oggetto" Nullable="true" />
+          <Property Type="Int32" Name="CodiceClasse" Nullable="true" />
+          <Property Type="String" Name="DescrizioneClasse" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CodiceTipo" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="DescrizioneTipo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CodiceSottotipo" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="DescrizioneSottotipo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CodiceTabella" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Descrizione" Nullable="true" MaxLength="106" />
+          <Property Type="DateTime" Name="Dal" Nullable="true" />
+          <Property Type="DateTime" Name="Al" Nullable="true" />
+          <Property Type="String" Name="NumeroDocumento" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Destinazione" Nullable="true" />
+          <Property Type="String" Name="Testo" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="Peso" Nullable="true" Precision="7" Scale="2" />
+          <Property Type="DateTime" Name="DataUltimaCompilazione" Nullable="true" />
+          <Property Type="DateTime" Name="DataScadenza" Nullable="true" />
+          <Property Type="String" Name="Comando" Nullable="false" MaxLength="73" />
+        </ComplexType>
+        <ComplexType Name="spFullTextIndicizzaScadenze_Result">
+          <Property Type="String" Name="IdDocumento" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Titolo" Nullable="true" MaxLength="222" />
+          <Property Type="String" Name="Oggetto" Nullable="false" />
+          <Property Type="Int32" Name="CodiceClasse" Nullable="true" />
+          <Property Type="String" Name="DescrizioneClasse" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CodiceTipo" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="DescrizioneTipo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CodiceSottotipo" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="DescrizioneSottotipo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CodiceTabella" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Descrizione" Nullable="true" MaxLength="106" />
+          <Property Type="DateTime" Name="Dal" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Al" Nullable="true" />
+          <Property Type="String" Name="NumeroDocumento" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Destinazione" Nullable="true" />
+          <Property Type="String" Name="Testo" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="Peso" Nullable="true" Precision="7" Scale="2" />
+          <Property Type="DateTime" Name="DataUltimaCompilazione" Nullable="true" />
+          <Property Type="DateTime" Name="DataScadenza" Nullable="true" />
+          <Property Type="String" Name="Comando" Nullable="false" MaxLength="19" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TAMONE_DOCModelStoreContainer" CdmEntityContainer="TAMONE_DOCEntities" >
+          <FunctionImportMapping FunctionImportName="spFullTextApriDocumento" FunctionName="TAMONE_DOCModel.Store.spFullTextApriDocumento">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TAMONE_DOCModel.spFullTextApriDocumento_Result">
+                <ScalarProperty Name="IdDocumento" ColumnName="IdDocumento" />
+                <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+                <ScalarProperty Name="Dal" ColumnName="Dal" />
+                <ScalarProperty Name="Al" ColumnName="Al" />
+                <ScalarProperty Name="CodiceClasse" ColumnName="CodiceClasse" />
+                <ScalarProperty Name="DescrizioneClasse" ColumnName="DescrizioneClasse" />
+                <ScalarProperty Name="CodiceTabella" ColumnName="CodiceTabella" />
+                <ScalarProperty Name="CodiceTipo" ColumnName="CodiceTipo" />
+                <ScalarProperty Name="DescrizioneTipo" ColumnName="DescrizioneTipo" />
+                <ScalarProperty Name="CodiceSottotipo" ColumnName="CodiceSottotipo" />
+                <ScalarProperty Name="DescrizioneSottotipo" ColumnName="DescrizioneSottotipo" />
+                <ScalarProperty Name="Destinazione" ColumnName="Destinazione" />
+                <ScalarProperty Name="Testo" ColumnName="Testo" />
+                <ScalarProperty Name="Titolo" ColumnName="Titolo" />
+                <ScalarProperty Name="Oggetto" ColumnName="Oggetto" />
+                <ScalarProperty Name="DataUltimaCompilazione" ColumnName="DataUltimaCompilazione" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spFullTextArticoliDocumento" FunctionName="TAMONE_DOCModel.Store.spFullTextArticoliDocumento">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TAMONE_DOCModel.spFullTextArticoliDocumento_Result">
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Segnalibro" ColumnName="Segnalibro" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spFullTextTagDocumento" FunctionName="TAMONE_DOCModel.Store.spFullTextTagDocumento" />
+          <FunctionImportMapping FunctionImportName="spFullTextIndicizzaDocumenti" FunctionName="TAMONE_DOCModel.Store.spFullTextIndicizzaDocumenti">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TAMONE_DOCModel.spFullTextIndicizzaDocumenti_Result">
+                <ScalarProperty Name="IdDocumento" ColumnName="IdDocumento" />
+                <ScalarProperty Name="Titolo" ColumnName="Titolo" />
+                <ScalarProperty Name="Oggetto" ColumnName="Oggetto" />
+                <ScalarProperty Name="CodiceClasse" ColumnName="CodiceClasse" />
+                <ScalarProperty Name="DescrizioneClasse" ColumnName="DescrizioneClasse" />
+                <ScalarProperty Name="CodiceTipo" ColumnName="CodiceTipo" />
+                <ScalarProperty Name="DescrizioneTipo" ColumnName="DescrizioneTipo" />
+                <ScalarProperty Name="CodiceSottotipo" ColumnName="CodiceSottotipo" />
+                <ScalarProperty Name="DescrizioneSottotipo" ColumnName="DescrizioneSottotipo" />
+                <ScalarProperty Name="CodiceTabella" ColumnName="CodiceTabella" />
+                <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+                <ScalarProperty Name="Dal" ColumnName="Dal" />
+                <ScalarProperty Name="Al" ColumnName="Al" />
+                <ScalarProperty Name="NumeroDocumento" ColumnName="NumeroDocumento" />
+                <ScalarProperty Name="Destinazione" ColumnName="Destinazione" />
+                <ScalarProperty Name="Testo" ColumnName="Testo" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="DataUltimaCompilazione" ColumnName="DataUltimaCompilazione" />
+                <ScalarProperty Name="DataScadenza" ColumnName="DataScadenza" />
+                <ScalarProperty Name="Comando" ColumnName="Comando" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spFullTextIndicizzaDocumentiTotale" FunctionName="TAMONE_DOCModel.Store.spFullTextIndicizzaDocumentiTotale" />
+          <FunctionImportMapping FunctionImportName="spFullTextIndicizzaScadenze" FunctionName="TAMONE_DOCModel.Store.spFullTextIndicizzaScadenze">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TAMONE_DOCModel.spFullTextIndicizzaScadenze_Result">
+                <ScalarProperty Name="IdDocumento" ColumnName="IdDocumento" />
+                <ScalarProperty Name="Titolo" ColumnName="Titolo" />
+                <ScalarProperty Name="Oggetto" ColumnName="Oggetto" />
+                <ScalarProperty Name="CodiceClasse" ColumnName="CodiceClasse" />
+                <ScalarProperty Name="DescrizioneClasse" ColumnName="DescrizioneClasse" />
+                <ScalarProperty Name="CodiceTipo" ColumnName="CodiceTipo" />
+                <ScalarProperty Name="DescrizioneTipo" ColumnName="DescrizioneTipo" />
+                <ScalarProperty Name="CodiceSottotipo" ColumnName="CodiceSottotipo" />
+                <ScalarProperty Name="DescrizioneSottotipo" ColumnName="DescrizioneSottotipo" />
+                <ScalarProperty Name="CodiceTabella" ColumnName="CodiceTabella" />
+                <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+                <ScalarProperty Name="Dal" ColumnName="Dal" />
+                <ScalarProperty Name="Al" ColumnName="Al" />
+                <ScalarProperty Name="NumeroDocumento" ColumnName="NumeroDocumento" />
+                <ScalarProperty Name="Destinazione" ColumnName="Destinazione" />
+                <ScalarProperty Name="Testo" ColumnName="Testo" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="DataUltimaCompilazione" ColumnName="DataUltimaCompilazione" />
+                <ScalarProperty Name="DataScadenza" ColumnName="DataScadenza" />
+                <ScalarProperty Name="Comando" ColumnName="Comando" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spFullTextIndicizzaScadenzeTotale" FunctionName="TAMONE_DOCModel.Store.spFullTextIndicizzaScadenzeTotale" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Nessuno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
